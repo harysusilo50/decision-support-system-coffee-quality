@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kriteria;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SubKriteria extends Model
 {
@@ -16,5 +17,9 @@ class SubKriteria extends Model
         'value',
         'kriteria_id'
     ];
+
+    public function kriteria(){
+        return $this->belongsTo(Kriteria::class, 'kriteria_id');
+    }
 
 }
