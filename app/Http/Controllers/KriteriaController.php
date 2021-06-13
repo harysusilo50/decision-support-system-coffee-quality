@@ -27,6 +27,7 @@ class KriteriaController extends Controller
 
     public function storeTambah(Request $request)
     {
+        dd($request);
         $this->validate($request, [
             'kriteria' => 'required|max:255',
             'tipe' => 'required|in:cost,benefit',

@@ -15,6 +15,9 @@
        <button type="button" onclick="addForm()">
             add form
         </button>        
+       <button type="button" onclick="showInput()">
+            show form
+        </button>        
         <button type="submit">
             submit
         </button>
@@ -22,11 +25,19 @@
 
     </body>
     <script>
-        function addForm(){
-            console.log("test")
-            let input = document.getElementById("dynamic-form").innerHTML
-            input += '<input type="text" name="hehe[]" id="" >'
-            document.getElementById('dynamic-form').innerHTML = input
+        let counter = 1;
+
+        function showInput(){
+            console.log(document.getElementsByName('hehe[]')[0].value)
         }
+
+        function addForm(){
+            let input = document.getElementById("dynamic-form").innerHTML
+            input += `<input type="text" name="hehe[]" id="input-${counter}" value="">`
+            document.getElementById('dynamic-form').innerHTML = input
+            counter++;
+        }
+
+    //     
     </script>
     </html>
