@@ -12,7 +12,7 @@ class BijiKopi extends Model
     protected $table = 'biji_kopi';
 
     protected $fillable = [
-        'name',
+        'nama',
         'harga'
     ];
 }

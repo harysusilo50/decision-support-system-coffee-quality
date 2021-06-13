@@ -10,7 +10,20 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['guest'])->except('index', 'logout');
+        $this->middleware(['guest'])->except(['index', 'logout']);
+    }
+
+    public function test()
+    {
+        $count = [1, 2, 3, 4, 5];
+        return view('test', [
+            'count' => $count
+        ]);
+    }
+
+    public function testStore(Request $request)
+    {
+        dd($request->hehe);
     }
 
     public function index()
@@ -31,19 +44,20 @@ class UserController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('landing')->with('success', 'Logout Success');    }
+        return redirect()->route('landing')->with('success', 'Logout Success');
+    }
 
     public function storeLogin(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'username' => 'required|max:255',
             'password' => 'required'
         ]);
 
-        if(!auth()->attempt($request->only('username', 'password'), $request->remember)){
+        if (!auth()->attempt($request->only('username', 'password'), $request->remember)) {
             return back()->with('status', 'Invalid Login Details');
         }
-        
+
 
         return redirect()->route('landing')->with('success', 'Login Success');
     }
@@ -62,7 +76,7 @@ class UserController extends Controller
         ]);
 
         auth()->attempt($request->only('username', 'password'));
-        
+
         return redirect()->route('landing')->with('success', 'Register Success');
     }
 }
