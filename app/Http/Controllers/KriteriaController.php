@@ -20,11 +20,6 @@ class KriteriaController extends Controller
         ]);
     }
 
-    public function tambah()
-    {
-        return view('tambahkriteria');
-    }
-
     public function storeTambah(Request $request)
     {
         $this->validate($request, [

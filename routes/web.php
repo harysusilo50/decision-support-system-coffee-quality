@@ -35,7 +35,6 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 Route::get('/kriteria', [KriteriaController::class, 'index'])->name('kriteria');
-Route::get('/kriteria/tambah', [KriteriaController::class, 'tambah'])->name('tambah-kriteria');
 Route::post('/kriteria/tambah', [KriteriaController::class, 'storeTambah'])->name('store-kriteria');
 Route::delete('/kriteria/{kriteria}', [KriteriaController::class, 'destroy'])->name('kriteria.delete');
 
@@ -44,6 +43,5 @@ Route::get('/data-penjualan', [DataPenjualanController::class, 'index'])->name('
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil');
 
 Route::get('/biji-kopi', [BijiKopiController::class, 'index'])->name('biji-kopi');
-Route::get('/biji-kopi/tambah', [BijiKopiController::class, 'tambah'])->name('tambah-biji-kopi');
 Route::post('/biji-kopi/tambah', [BijiKopiController::class, 'storeTambah'])->name('store-biji-kopi');
 Route::delete('/biji-kopi/{bijikopi}', [BijiKopiController::class, 'destroy'])->name('biji-kopi.delete');

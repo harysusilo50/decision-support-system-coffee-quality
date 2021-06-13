@@ -20,11 +20,6 @@ class BijiKopiController extends Controller
         ]);
     }
 
-    public function tambah()
-    {
-        return view('tambahbijikopi');
-    }
-
     public function storeTambah(Request $request)
     {
         $this->validate($request, [
