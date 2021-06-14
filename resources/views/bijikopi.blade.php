@@ -90,6 +90,15 @@
                     </div>
                     @enderror
                 </div>
+                @foreach ($kriterias as $kriteria)
+                    <h1 for="">{{ $kriteria->kriteria }}</h1><br>
+                        @foreach ($kriteria->subKriteria as $item)
+                            <div class="custom-control custom-radio ">
+                                <input class="custom-control-input" type="radio" id="{{ $item->sub_kriteria }}" name="{{ $kriteria->id }}" value="{{ $item->id }}" >
+                                <label class="custom-control-label" for="{{ $item->sub_kriteria }}">{{ $item->sub_kriteria }}</label>
+                            </div>
+                        @endforeach
+                @endforeach
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button class="btn btn-brown" type="submit">Tambah Data Biji Kopi</button>

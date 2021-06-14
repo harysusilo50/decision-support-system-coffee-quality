@@ -13,6 +13,15 @@ class Nilai extends Model
 
     protected $fillable = [
         'biji_kopi_id',
-        'kriteria_id'
+        'kriteria_id',
+        'sub_kriteria_id',
     ];
+
+    public function kriteria(){
+        return $this->belongsTo(Kriteria::class, 'kriteria_id');
+    }
+
+    public function bijiKopi(){
+        return $this->belongsTo(BijiKopi::class, 'biji_kopi_id');
+    }
 }

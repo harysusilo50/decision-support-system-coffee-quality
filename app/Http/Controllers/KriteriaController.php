@@ -27,8 +27,7 @@ class KriteriaController extends Controller
             'kriteria' => 'required|max:255',
             'tipe' => 'required|in:cost,benefit',
             'bobot' => 'required|integer',
-            'pilihan' => 'required|array',
-            'nilai' => 'required|array'
+            'pilihan' => 'required|array'
         ]);
 
         $kriteria = Kriteria::create([
@@ -37,12 +36,14 @@ class KriteriaController extends Controller
             'bobot' => $request->bobot
         ]);
 
-        for ($i = 1; $i <= count($request->nilai); $i++) {
+        $counter = 1;
+        foreach ($request->pilihan as $pilihan) {
             SubKriteria::create([
-                'sub_kriteria' => $request->pilihan[$i],
-                'value' => $request->nilai[$i],
+                'sub_kriteria' => $pilihan,
+                'value' => $counter,
                 'kriteria_id' => $kriteria->id,
             ]);
+            $counter++;
         }
 
         return redirect()->route('kriteria');
@@ -68,8 +69,7 @@ class KriteriaController extends Controller
             'kriteria' => 'required|max:255',
             'tipe' => 'required|in:cost,benefit',
             'bobot' => 'required|integer',
-            'pilihan' => 'required|array',
-            'nilai' => 'required|array'
+            'pilihan' => 'required|array'
         ]);
         $kriteria->kriteria = $request->kriteria;
         $kriteria->tipe = $request->tipe;
@@ -77,13 +77,16 @@ class KriteriaController extends Controller
         $kriteria->save();
 
         $kriteria->subKriteria()->delete();
-        
-        for ($i = 1; $i <= count($request->nilai); $i++) {
-            $kriteria->subKriteria()->create([
-                'sub_kriteria' => $request->pilihan[$i],
-                'value' => $request->nilai[$i],
+
+
+        $counter = 1;
+        foreach ($request->pilihan as $pilihan) {
+            SubKriteria::create([
+                'sub_kriteria' => $pilihan,
+                'value' => $counter,
                 'kriteria_id' => $kriteria->id,
             ]);
+            $counter++;
         }
 
         return redirect()->route('kriteria');

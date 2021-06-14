@@ -124,6 +124,8 @@
                     <button class="btn btn-secondary" type="submit">Tambah Data Kriteria</button>
                 </div>
             </form>
+
+            
         </div>
     </div>
 </div>
@@ -137,7 +139,7 @@
         $("#add-kriteria").click(function () {
             console.log("tst")
             ++counter;
-            $("#dynamic-form").append(`<div><input type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" placeholder="Sub Kriteria" required > <input type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" placeholder="Nilai" required > <button class="remove-input-field">Remove</button> </div>`
+            $("#dynamic-form").append(`<div><input type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" placeholder="Sub Kriteria" required > <button class="remove-input-field">Remove</button> </div>`
                 );
         });
         $(document).on('click', '.remove-input-field', function () {

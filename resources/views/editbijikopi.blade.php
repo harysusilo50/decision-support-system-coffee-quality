@@ -31,6 +31,17 @@
                             </div>
                             @enderror
                         </div>
+                        
+                        @foreach ($kriterias as $kriteria)
+                            <h1 for="">{{ $kriteria->kriteria }}</h1><br>
+
+                                @foreach ($kriteria->subKriteria as $item)
+                                    <div class="custom-control custom-radio ">
+                                        <input class="custom-control-input" type="radio" id="{{ $item->sub_kriteria }}" name="{{ $kriteria->id }}" value="{{ $item->id }}" @if($bijikopi->isFilledKriteria($kriteria) &&  $bijikopi->findSubKriteriaId($kriteria) == $item->id) checked @endif>
+                                        <label class="custom-control-label" for="{{ $item->sub_kriteria }}">{{ $item->sub_kriteria }}</label>
+                                    </div>
+                                @endforeach
+                        @endforeach
         
                         <div class="modal-footer d-flex justify-content-center">
                             <button class="btn btn-brown" type="submit">Edit Data Biji Kopi</button>
@@ -48,11 +59,11 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
-    var counter = 0;
+    var counter = 1;
         $("#add-kriteria").click(function () {
             console.log("tst")
             ++counter;
-            $("#dynamic-form").append(`<div><input type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required > <input type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" required > <button class="remove-input-field">Remove</button> </div>`
+            $("#dynamic-form").append(`<div><input type="text" name="pilihan[]" id="input-pilihan-${counter}" value="" required > <input type="number" name="nilai[]" id="input-nilai-${counter}" value="" required > <button class="remove-input-field">Remove</button> </div>`
                 );
         });
         $(document).on('click', '.remove-input-field', function () {
