@@ -6,12 +6,14 @@ use App\Models\BijiKopi;
 use App\Models\Kriteria;
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BijiKopiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['guest']);
+        $this->middleware(['auth']);
+        $this->middleware(['admin'])->only(['edit', 'storeEdit']);
     }
 
     public function index()

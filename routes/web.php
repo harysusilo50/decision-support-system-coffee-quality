@@ -41,6 +41,8 @@ Route::put('/kriteria/{kriteria}', [KriteriaController::class, 'storeEdit'])->na
 Route::delete('/kriteria/{kriteria}', [KriteriaController::class, 'destroy'])->name('kriteria.delete');
 
 Route::get('/data-penjualan', [DataPenjualanController::class, 'index'])->name('data-penjualan');
+Route::post('/data-penjualan', [DataPenjualanController::class, 'storeTambah'])->name('store-data-penjualan');
+Route::delete('/data-penjualan/{datapenjualan}', [DataPenjualanController::class, 'destroy'])->name('data-penjualan.delete');
 
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil');
 

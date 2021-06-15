@@ -124,6 +124,7 @@
                     <button class="btn btn-secondary" type="submit">Tambah Data Kriteria</button>
                 </div>
             </form>
+            
 
             
         </div>

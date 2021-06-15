@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['guest'])->except(['index', 'logout']);
+        $this->middleware(['guest'])->except('logout', 'index');
     }
 
     public function test()

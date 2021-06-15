@@ -12,7 +12,12 @@ class DataPenjualan extends Model
     protected $table = 'data_penjualan';
 
     protected $fillable = [
-        'name',
-        'harga'
+        'biji_kopi_id',
+        'jumlah_penjualan',
+        'tanggal_penjualan'
     ];
+
+    public function bijiKopi(){
+        return $this->belongsTo(BijiKopi::class, 'biji_kopi_id');
+    }
 }
