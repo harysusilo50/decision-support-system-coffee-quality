@@ -15,7 +15,7 @@ class KriteriaController extends Controller
 
     public function index()
     {
-        
+
         $kriterias = Kriteria::get();
         return view('kriteria', [
             'kriterias' => $kriterias
