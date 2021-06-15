@@ -113,11 +113,9 @@
                     @enderror
                 </div>
                 <div id ='dynamic-form'>
-                    <h1>
-                        sub kriteria
-                    </h1>
+                    <label for="">Sub Kriteria</label>
                 </div>
-                <button type="button" id="add-kriteria">
+                <button class="btn btn-sm btn-success" type="button" id="add-kriteria">
                     add kriteria
                 </button>
                 <div class="modal-footer d-flex justify-content-center">
@@ -137,7 +135,17 @@
         $("#add-kriteria").click(function () {
             console.log("tst")
             ++counter;
-            $("#dynamic-form").append(`<div><input type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" placeholder="Sub Kriteria" required > <input type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" placeholder="Nilai" required > <button class="remove-input-field">Remove</button> </div>`
+            $("#dynamic-form").append(`<div class="form-row mb-1 md-form">
+                                            <div class="col">
+                                                <label for="input-pilihan-${counter}">Item Sub Kriteria </label>
+                                                <input class="form-control" type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required >
+                                            </div> 
+                                            <div class="col">
+                                                <label for="input-nilai-${counter}">Nilai Item</label>
+                                                <input class="form-control" type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" required >
+                                                </div>
+                                            <button class="btn btn-sm btn-danger remove-input-field">Remove</button> 
+                                        </div>`
                 );
         });
         $(document).on('click', '.remove-input-field', function () {

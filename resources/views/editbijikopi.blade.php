@@ -4,9 +4,9 @@
 
 <div class="container animated fadeIn">
     <div class="row justify-content-center mt-5">
-        <div class="col-md">
+        <div class="col-md-5">
             <div class="card">
-                <div class="card-header text-white h5 bg-secondary">
+                <div class="card-header text-white h5 bg-dark">
                     Edit Biji Kopi
                 </div>
                 <div class="card-body">
