@@ -64,7 +64,7 @@
                     @endauth
                     
                     @guest
-                    <a class="btn btn-primary btn-sm" href="{{ route('register') }}"> Daftar / Login </a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('login') }}"> Daftar / Login </a>
                     @endguest
                 </form>
                 

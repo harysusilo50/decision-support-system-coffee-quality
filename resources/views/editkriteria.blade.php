@@ -85,20 +85,21 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
-    var counter = {{ $kriteria->count() }};
+    var counter = {{ $sub_kriteria->count()+1 }};
         $("#add-kriteria").click(function () {
             console.log("tst")
-            ++counter;
-            $("#dynamic-form").append(`<div class="form-row mb-1 md-form">
+            $("#dynamic-form").append(
+                `<div class="md-form form-row">
                 <div class="col">
                     <input class="form-control" type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required >
                 </div>
-            <button class="btn btn-sm btn-danger remove-input-field">Remove</button> </div>`
+                    <button class="btn btn-sm btn-danger remove-input-field">Remove</button>
+                </div>`
                 );
+            counter++;
         });
         $(document).on('click', '.remove-input-field', function () {
             $(this).parent('div').remove();
-            --counter;
         });
     </script>
 @endpush

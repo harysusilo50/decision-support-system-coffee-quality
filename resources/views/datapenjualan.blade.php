@@ -79,9 +79,8 @@
             <form class="modal-body mx-3" method="POST" action="{{route('store-data-penjualan')}}">
                 @csrf
                 <div class="md-form">
-                    <label for="biji_kopi_id">Pilih Biji Kopi :</label>
-
-                    <select name="biji_kopi_id" id="biji_kopi_id" required>
+                    <select class="form-control" name="biji_kopi_id" id="biji_kopi_id" required>
+                        <option value="" disabled selected>Pilih Biji Kopi :</option>
                         @foreach ($bijikopis as $bijikopi)
                             <option value="{{ $bijikopi->id }}">{{ $bijikopi->nama }}</option>
                         @endforeach
