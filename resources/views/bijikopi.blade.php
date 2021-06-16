@@ -42,9 +42,7 @@
                                 <form method="POST" action="{{ route('biji-kopi.delete', $bijikopi->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    @if (auth()->user()->isAdmin())
-                                        <a href="{{ route('biji-kopi.edit', $bijikopi->id) }}" class="btn btn-sm btn-warning btn-sm m-0">edit</a>
-                                    @endif
+                                    <a href="{{ route('biji-kopi.edit', $bijikopi->id) }}" class="btn btn-sm btn-warning btn-sm m-0">edit</a>
                                     <button class="btn btn-sm btn-danger btn-sm m-0" type="submit">
                                         delete
                                     </button>

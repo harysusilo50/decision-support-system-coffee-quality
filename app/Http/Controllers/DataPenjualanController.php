@@ -13,16 +13,18 @@ class DataPenjualanController extends Controller
         $this->middleware(['admin']);
     }
 
-    public function index(){
+    public function index()
+    {
         $bijikopis = BijiKopi::get();
         $datapenjualans = DataPenjualan::get();
-        return view('datapenjualan',[
+        return view('datapenjualan', [
             'bijikopis' => $bijikopis,
             'datapenjualans' => $datapenjualans
         ]);
     }
 
-    public function storeTambah(Request $request){
+    public function storeTambah(Request $request)
+    {
         $this->validate($request, [
             'biji_kopi_id' => 'required|integer',
             'jumlah_penjualan' => 'required|integer',
@@ -38,9 +40,28 @@ class DataPenjualanController extends Controller
         return back();
     }
 
-    public function destroy(DataPenjualan $datapenjualan){
+    public function destroy(DataPenjualan $datapenjualan)
+    {
         $datapenjualan->delete();
         return back();
     }
-   
+
+    public function edit(DataPenjualan $datapenjualan, Request $request)
+    {
+        return view('editdatapenjualan', [
+            'datapenjualan' => $datapenjualan,
+        ]);
+    }
+    public function storeEdit(DataPenjualan $datapenjualan, Request $request)
+    {
+        $this->validate($request, [
+            'tanggal_penjualan' => 'required|max:255',
+            'jumlah_penjualan' => 'required|max:255',
+        ]);
+        $datapenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+        $datapenjualan->jumlah_penjualan = $request->jumlah_penjualan;
+        $datapenjualan->save();
+
+        return redirect()->route('data-penjualan');
+    }
 }

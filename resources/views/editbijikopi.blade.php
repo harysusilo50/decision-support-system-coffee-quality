@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Kriteria | SPK Coffee')
+@section('title', 'Biji Kopi | SPK Coffee')
 @section('konten')
 
 <div class="container animated fadeIn">

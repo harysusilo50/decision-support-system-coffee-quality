@@ -42,8 +42,8 @@ Route::delete('/kriteria/{kriteria}', [KriteriaController::class, 'destroy'])->n
 
 Route::get('/data-penjualan', [DataPenjualanController::class, 'index'])->name('data-penjualan');
 Route::post('/data-penjualan', [DataPenjualanController::class, 'storeTambah'])->name('store-data-penjualan');
-Route::get('/data-penjualan/{bijikopi}', [DataPenjualanController::class, 'edit'])->name('data-penjualan.edit');
-Route::put('/data-penjualan/{bijikopi}', [DataPenjualanController::class, 'storeEdit'])->name('ata-penjualan.edit.post');
+Route::get('/data-penjualan/{datapenjualan}', [DataPenjualanController::class, 'edit'])->name('data-penjualan.edit');
+Route::put('/data-penjualan/{datapenjualan}', [DataPenjualanController::class, 'storeEdit'])->name('data-penjualan.edit.post');
 Route::delete('/data-penjualan/{datapenjualan}', [DataPenjualanController::class, 'destroy'])->name('data-penjualan.delete');
 
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil');

@@ -13,7 +13,6 @@ class BijiKopiController extends Controller
     public function __construct()
     {
         $this->middleware(['auth']);
-        $this->middleware(['admin'])->only(['edit', 'storeEdit']);
     }
 
     public function index()
@@ -95,9 +94,6 @@ class BijiKopiController extends Controller
                 'sub_kriteria_id' => $request[$kriteria[$i]->id]
             ]);
         }
-
-
-
 
         return redirect()->route('biji-kopi');
     }

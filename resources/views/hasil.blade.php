@@ -11,34 +11,42 @@
                 </div>
                 <div class="card-body">
                     <h3>Nilai Awal</h3>
-    <table class="table table-striped table-responsive-md btn-table">
-        <tr>
-        <th>No</th>
-            <th>Biji Kopi</th>
-            @foreach ($kriterias as $kriteria)
-                <th>
-                    {{ $kriteria->kriteria }} ({{ $kriteria->tipe }})
-                </th>
-            @endforeach
-        </tr>
-        @foreach ($bijikopis as $bijikopi)
-            <tr>
-                <td>
-                        {{ $loop->index+1 }}
-                </td>
-                <td>
-                    {{ $bijikopi->nama }}
-                </td>
-                @foreach ($kriterias as $kriteria)
-                    <td>
-                        {{ $bijikopi->nilaiKriteriaTabel1($kriteria) }}
-                    </td>
+            <table class="table table-striped table-responsive-md btn-table">
+                <tr>
+                <th>No</th>
+                    <th>Biji Kopi</th>
+                    @foreach ($kriterias as $kriteria)
+                        <th>
+                            {{ $kriteria->kriteria }} ({{ $kriteria->tipe }})
+                        </th>
+                    @endforeach
+                </tr>
+                @foreach ($bijikopis as $bijikopi)
+                    <tr>
+                        <td>
+                                {{ $loop->index+1 }}
+                        </td>
+                        <td>
+                            {{ $bijikopi->nama }}
+                        </td>
+                        @foreach ($kriterias as $kriteria)
+                        @if ($bijikopi->nilaiKriteriaTabel1($kriteria))
+                            <td>
+                                {{ $bijikopi->nilaiKriteriaTabel1($kriteria) }}
+                            </td>
+                            
+                        @else
+                            <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+                        @endif
+                        @endforeach
+                    </tr>
                 @endforeach
-            </tr>
-        @endforeach
 
-    </table>
-</div>
+            </table>
+        </div>
         <div class="card-body">
             <h3>Nilai Cost Benefit</h3>
             <table class="table table-striped table-responsive-md btn-table">
@@ -60,9 +68,16 @@
                             {{ $bijikopi->nama }}
                         </td>
                         @foreach ($kriterias as $kriteria)
+                        @if ($bijikopi->nilaiKriteriaTabel2($kriteria))
                             <td>
-                                {{ $bijikopi->nilaiKriteriaTabel2($kriteria) }}
+                                {{$bijikopi->nilaiKriteriaTabel2($kriteria)}}
                             </td>
+                        @else
+                        <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+                        @endif
                         @endforeach
                     </tr>
                 @endforeach
@@ -90,9 +105,18 @@
                             {{ $bijikopi->nama }}
                         </td>
                         @foreach ($kriterias as $kriteria)
+                        @if ($bijikopi->nilaiKriteriaTabel3($kriteria))
                             <td>
                                 {{ $bijikopi->nilaiKriteriaTabel3($kriteria) }}
                             </td>
+                            
+                        @else
+                        <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+            
+                        @endif
                         @endforeach
                     </tr>
                 @endforeach
@@ -101,7 +125,7 @@
         </div>
 
         <div class="card-body">
-            <h3>Dijumlah sesuai dengan kopi dan didapat hasil rangking</h3>
+            <h3>Nilai dan Peringkat Akhir Kopi</h3>
             <table class="table table-striped table-responsive-md btn-table">
                 <tr>
                 <th>No</th>
@@ -127,20 +151,47 @@
                             {{ $bijikopi->nama }}
                         </td>
                         @foreach ($kriterias as $kriteria)
+                        @if ($bijikopi->nilaiKriteriaTabel3($kriteria))
                             <td>
                                 {{ $bijikopi->nilaiKriteriaTabel3($kriteria) }}
                             </td>
+                        @else
+                        <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+                        @endif
                         @endforeach
-                        <td>
-                            {{ $bijikopi->nilaiKriteriaTabel4() }}
-                        </td>
-                        <td>
-                            {{ $bijikopi->ranking() }}
-                        </td>
+                        
+                        @if ($bijikopi->nilaiKriteriaTabel4())
+                            <td>
+                                {{ $bijikopi->nilaiKriteriaTabel4() }}
+                            </td>
+                            
+                        @else
+                        <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+                        @endif
+                        @if ($bijikopi->ranking())
+                            <td>
+                                {{ $bijikopi->ranking() }}
+                            </td>
+                            
+                        @else
+                            <td style="color: red">
+                                <b>Belum Diisi</b>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
 
             </table>
+            <div class="alert alert-primary" role="alert">
+            Kesimpulan : Dari hasil perhitungan yang dilakukan menggunakan metode SAW Biji Kopi Terbaik untuk di pilih adalah {{ $numberOne->nama }}  dengan nilai {{ $numberOne->nilaiKriteriaTabel4() }}
+            </div>
         </div>
     </div>
     </div>

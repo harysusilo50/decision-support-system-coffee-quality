@@ -48,7 +48,7 @@
                                 <form method="POST" action="{{ route('data-penjualan.delete', $datapenjualan->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('biji-kopi.edit', $datapenjualan->id) }}" class="btn btn-sm btn-warning btn-sm m-0">Edit</a>
+                                    <a href="{{ route('data-penjualan.edit', $datapenjualan->id) }}" class="btn btn-sm btn-warning btn-sm m-0">Edit</a>
                                     <button class="btn btn-sm btn-danger btn-sm m-0" type="submit">
                                         Delete
                                     </button>
