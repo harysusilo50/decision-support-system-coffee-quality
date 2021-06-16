@@ -21,4 +21,8 @@ class Kriteria extends Model
     public function subKriteria(){
         return $this->hasMany(SubKriteria::class, 'kriteria_id');
     }
+    
+    public function nilai(){
+        return $this->hasMany(Nilai::class, 'kriteria_id');
+    }
 }

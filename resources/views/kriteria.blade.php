@@ -122,6 +122,9 @@
                     <button class="btn btn-secondary" type="submit">Tambah Data Kriteria</button>
                 </div>
             </form>
+            
+
+            
         </div>
     </div>
 </div>
@@ -140,10 +143,6 @@
                                                 <label for="input-pilihan-${counter}">Item Sub Kriteria </label>
                                                 <input class="form-control" type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required >
                                             </div> 
-                                            <div class="col">
-                                                <label for="input-nilai-${counter}">Nilai Item</label>
-                                                <input class="form-control" type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" required >
-                                                </div>
                                             <button class="btn btn-sm btn-danger remove-input-field">Remove</button> 
                                         </div>`
                 );

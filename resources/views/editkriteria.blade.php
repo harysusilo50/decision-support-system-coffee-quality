@@ -62,10 +62,6 @@
                                         id="input-pilihan-{{ $loop->index+1 }}" value="{{ $item->sub_kriteria }}"
                                         required>
                                 </div>
-                                <div class="col">
-                                    <input class="form-control" type="number" name="nilai[{{ $loop->index+1 }}]"
-                                        id="input-nilai-{{ $loop->index+1 }}" value="{{ $item->value }}" required>
-                                </div>
                                 <button class="btn btn-sm btn-danger remove-input-field">Remove</button>
                             </div>
                             @endforeach
@@ -77,6 +73,7 @@
                             <button class="btn btn-secondary" type="submit">Edit Data Kriteria</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -86,26 +83,22 @@
 @endsection
 
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-    var counter = 0;
-    $("#add-kriteria").click(function () {
-        console.log("tst")
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    var counter = {{ $kriteria->count() }};
+        $("#add-kriteria").click(function () {
+            console.log("tst")
             ++counter;
-        $("#dynamic-form").append(
-            `<div class="form-row mb-1 md-form">
+            $("#dynamic-form").append(`<div class="form-row mb-1 md-form">
                 <div class="col">
                     <input class="form-control" type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required >
                 </div>
-                <div class="col">
-                    <input class="form-control" type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" required >
-                </div>
             <button class="btn btn-sm btn-danger remove-input-field">Remove</button> </div>`
-        );
-    });
-    $(document).on('click', '.remove-input-field', function () {
-        $(this).parent('div').remove();
-    });
-
-</script>
+                );
+        });
+        $(document).on('click', '.remove-input-field', function () {
+            $(this).parent('div').remove();
+            --counter;
+        });
+    </script>
 @endpush

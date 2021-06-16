@@ -40,21 +40,38 @@
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="{{ route('hasil') }}">Hasil</a>
                     </li>
+                    @auth
+                        @if (auth()->user()->isAdmin())
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" href="{{ route('data-penjualan') }}">Data Penjualan</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
                 <form class="form-inline" method="POST" action="{{ url('logout') }}">
                     @csrf
-                    @if (Auth::check())
+                    @auth
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="{{ route('kriteria') }}">
+                                hello {{ auth()->user()->role }}, {{ auth()->user()->username }}
+                            </a>
+                        </li>
                         <button class="btn btn-danger btn-sm" type="submit">
                             Logout
                         </button>
-                    @else
+                    </ul>
+                    @endauth
+                    
+                    @guest
                     <a class="btn btn-primary btn-sm" href="{{ route('register') }}"> Daftar / Login </a>
-                    @endif
+                    @endguest
                 </form>
-
+                
             </div>
         </div>
     </nav>
+    
 
     @yield('konten')
 

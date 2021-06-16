@@ -2,12 +2,12 @@
 @section('title', 'Login | SPK Coffee')
 @section('konten')
 <form class="container animated fadeInUp" method="POST">
+    @csrf
     <div class="row justify-content-center mt-4 mb-2">
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
                     <p class="card-title h4 mb-4 text-center">Login</p>
-                    @csrf
                     <div class="md-form mb-1">
                         <label for="username">Username</label>
                         <input class="form-control" value="{{ old('username') }}" type="text" name="username"

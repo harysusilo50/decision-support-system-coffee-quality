@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Data Biji Kopi | SPK Coffee')
+@section('title', 'Data Penjualan Biji Kopi | SPK Coffee')
 @section('konten')
 
 <div class="container animated fadeIn">
@@ -20,33 +20,37 @@
                                 <b> Nama Biji Kopi </b>
                             </th>
                             <th>
-                                <b> Harga </b>
+                                <b> Jumlah Penjualan </b>
+                            </th>
+                            <th>
+                                <b> Tanggal Penjualan </b>
                             </th>
                             <th>
                                 <b> Action </b>
                             </th>
                         </tr>
                     </thead>
-                        @foreach ($bijikopis as $bijikopi)
+                        @foreach ($datapenjualans as $datapenjualan)
                         <tr>
                             <td>
                                 {{ $loop->index + 1 }}
                             </td>
                             <td>
-                                {{ $bijikopi->nama }}
+                                {{ $datapenjualan->bijiKopi()->first()->nama }}
                             </td>
                             <td>
-                                {{ $bijikopi->harga }}
+                                {{ $datapenjualan->jumlah_penjualan }}
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('biji-kopi.delete', $bijikopi->id) }}">
+                                {{ $datapenjualan->tanggal_penjualan }}
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ route('data-penjualan.delete', $datapenjualan->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    @if (auth()->user()->isAdmin())
-                                        <a href="{{ route('biji-kopi.edit', $bijikopi->id) }}" class="btn btn-sm btn-warning btn-sm m-0">edit</a>
-                                    @endif
+                                    <a href="{{ route('biji-kopi.edit', $datapenjualan->id) }}" class="btn btn-sm btn-warning btn-sm m-0">Edit</a>
                                     <button class="btn btn-sm btn-danger btn-sm m-0" type="submit">
-                                        delete
+                                        Delete
                                     </button>
                                 </form>
                             </td>
@@ -67,41 +71,40 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content container">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Tambah Biji Kopi</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Tambah Data Penjualan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="modal-body mx-3" method="POST" action="{{route('store-biji-kopi')}}">
+            <form class="modal-body mx-3" method="POST" action="{{route('store-data-penjualan')}}">
                 @csrf
                 <div class="md-form">
-                    <label for="nama">Nama</label>
-                    <input class="form-control" value="{{ old('nama') }}" type="text" name="nama" id="nama">
-                    @error('nama')
+                    <label for="biji_kopi_id">Pilih Biji Kopi :</label>
+
+                    <select name="biji_kopi_id" id="biji_kopi_id" required>
+                        @foreach ($bijikopis as $bijikopi)
+                            <option value="{{ $bijikopi->id }}">{{ $bijikopi->nama }}</option>
+                        @endforeach
+                    </select> 
+                </div>
+                <div class="md-form">
+                    <label for="jumlah_penjualan">Jumlah Penjualan</label>
+                    <input class="form-control" value="{{ old('jumlah_penjualan') }}" type="number" name="jumlah_penjualan" id="jumlah_penjualan" required>
+                    @error('jumlah_penjualan')
                     <div>
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
                 <div class="md-form">
-                    <label for="harga">Harga</label>
-                    <input class="form-control" value="{{ old('harga') }}" type="number" name="harga" id="harga">
-                    @error('harga')
+                    <label for="tanggal_penjualan">Tanggal Penjualan</label>
+                    <input class="form-control" value="{{ old('tanggal_penjualan') }}" type="date" name="tanggal_penjualan" id="tanggal_penjualan" required>
+                    @error('tanggal_penjualan')
                     <div>
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-                @foreach ($kriterias as $kriteria)
-                    <h4 for=""> <b> {{ $kriteria->kriteria }} </b></h4>
-                        @foreach ($kriteria->subKriteria as $item)
-                            <div class="custom-control custom-radio mb-1">
-                                <input class="custom-control-input" type="radio" id="{{ $item->sub_kriteria }}" name="{{ $kriteria->id }}" value="{{ $item->id }}" >
-                                <label class="custom-control-label" for="{{ $item->sub_kriteria }}">{{ $item->sub_kriteria }}</label>
-                            </div>
-                        @endforeach
-                        <br>
-                @endforeach
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button class="btn btn-brown" type="submit">Tambah Data Biji Kopi</button>
