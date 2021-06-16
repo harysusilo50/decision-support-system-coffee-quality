@@ -37,8 +37,8 @@
 
                                 @foreach ($kriteria->subKriteria as $item)
                                     <div class="custom-control custom-radio ">
-                                        <input class="custom-control-input" type="radio" id="{{ $item->sub_kriteria }}" name="{{ $kriteria->id }}" value="{{ $item->id }}" @if($bijikopi->isFilledKriteria($kriteria) &&  $bijikopi->findSubKriteriaId($kriteria) == $item->id) checked @endif>
-                                        <label class="custom-control-label" for="{{ $item->sub_kriteria }}">{{ $item->sub_kriteria }}</label>
+                                        <input class="custom-control-input" type="radio" id="{{ $item->id }}" name="{{ $kriteria->id }}" value="{{ $item->id }}" @if($bijikopi->isFilledKriteria($kriteria) &&  $bijikopi->findSubKriteriaId($kriteria) == $item->id) checked @endif>
+                                        <label class="custom-control-label" for="{{ $item->id }}">{{ $item->sub_kriteria }}</label>
                                     </div>
                                 @endforeach
                         @endforeach

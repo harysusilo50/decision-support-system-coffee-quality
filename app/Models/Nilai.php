@@ -24,4 +24,8 @@ class Nilai extends Model
     public function bijiKopi(){
         return $this->belongsTo(BijiKopi::class, 'biji_kopi_id');
     }
+    
+    public function subKriteria(){
+        return $this->belongsTo(SubKriteria::class, 'sub_kriteria_id')->first();
+    }
 }

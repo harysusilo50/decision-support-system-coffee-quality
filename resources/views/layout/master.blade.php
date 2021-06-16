@@ -13,6 +13,7 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('images/coffee-beans.svg') }}" type="image/x-icon">
 </head>
 
 <body
@@ -37,9 +38,6 @@
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="{{ route('biji-kopi') }}">Produk Biji Kopi</a>
                     </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="{{ route('hasil') }}">Hasil</a>
-                    </li>
                     @auth
                         @if (auth()->user()->isAdmin())
                             <li class="nav-item mx-3">
@@ -47,6 +45,9 @@
                             </li>
                         @endif
                     @endauth
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="{{ route('hasil') }}">Hasil</a>
+                    </li>
                 </ul>
                 <form class="form-inline" method="POST" action="{{ url('logout') }}">
                     @csrf

@@ -42,4 +42,5 @@ class DataPenjualanController extends Controller
         $datapenjualan->delete();
         return back();
     }
+   
 }

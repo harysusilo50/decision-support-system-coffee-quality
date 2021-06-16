@@ -29,7 +29,7 @@
                         @enderror
                     </div>
                     <button class="btn btn-primary btn-block my-4" type="submit">login</button>
-                    <p>Belum Punya Akun? <a href="{{route('login')}}">Daftar</a></p>
+                    <p>Belum Punya Akun? <a href="{{route('register')}}">Daftar</a></p>
                 </div>
             </div>
         </div>
