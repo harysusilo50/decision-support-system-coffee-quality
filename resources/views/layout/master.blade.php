@@ -36,7 +36,10 @@
                         <a class="nav-link" href="{{ route('kriteria') }}">Kriteria</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="{{ route('biji-kopi') }}">Produk Biji Kopi</a>
+                        <a class="nav-link" href="{{ route('biji-kopi') }}">Memilih Biji Kopi</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="{{ route('pricelist.index') }}">Produk Biji Kopi</a>
                     </li>
                     @auth
                         @if (auth()->user()->isAdmin())

@@ -24,18 +24,17 @@ class BijiKopi extends Model
     }
     public function nilaiKriteriaTabel1(Kriteria $kriteria)
     {
-            $subKriteriaCount = SubKriteria::where('kriteria_id', $kriteria->id)->count();
-            if(!$this->hasMany(Nilai::class, 'biji_kopi_id')->where('kriteria_id', $kriteria->id)->first()){
-                return false;
-            }
-            $bijikopi = $this->hasMany(Nilai::class, 'biji_kopi_id')->where('kriteria_id', $kriteria->id)->first();
-            $hasil = $bijikopi->subKriteria()->value;
-            if(!$hasil){
-                return false;
-            }
-            $hasil = (float)$hasil / $subKriteriaCount * 100;
-            $hasil = number_format($hasil, 2, '.', ',');
-            return $hasil;
+        if(!$this->hasMany(Nilai::class, 'biji_kopi_id')->where('kriteria_id', $kriteria->id)->first()){
+            return false;
+        }
+        $bijikopi = $this->hasMany(Nilai::class, 'biji_kopi_id')->where('kriteria_id', $kriteria->id)->first();
+        $hasil = $bijikopi->subKriteria()->value;
+        if(!$hasil){
+            return false;
+        }
+        $hasil = (float)$hasil;
+        $hasil = number_format($hasil, 2, '.', ',');
+        return $hasil;
     }
 
     public function dataKriteriaCostBenefit(Kriteria $kriteria)
@@ -45,7 +44,6 @@ class BijiKopi extends Model
             }
             $bijikopi = $this->hasMany(Nilai::class, 'biji_kopi_id')->where('kriteria_id', $kriteria->id)->first();
             $hasil = $bijikopi->subKriteria()->value;
-            $hasil = (float)$hasil;
             return $hasil;
     }
 

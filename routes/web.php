@@ -6,6 +6,7 @@ use App\Http\Controllers\HasilController;
 use App\Http\Controllers\BijiKopiController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\DataPenjualanController;
+use App\Http\Controllers\PriceListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,6 @@ use App\Http\Controllers\DataPenjualanController;
 
 
 Route::get('/', [UserController::class, 'index'])->name('landing');
-
-Route::get('/test', [UserController::class, 'test'])->name('test');
-Route::post('/test', [UserController::class, 'testStore'])->name('test.post');
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'storeRegister'])->name('storeRegister');
@@ -53,3 +51,5 @@ Route::post('/biji-kopi/tambah', [BijiKopiController::class, 'storeTambah'])->na
 Route::get('/biji-kopi/{bijikopi}', [BijiKopiController::class, 'edit'])->name('biji-kopi.edit');
 Route::put('/biji-kopi/{bijikopi}', [BijiKopiController::class, 'storeEdit'])->name('biji-kopi.edit.post');
 Route::delete('/biji-kopi/{bijikopi}', [BijiKopiController::class, 'destroy'])->name('biji-kopi.delete');
+
+Route::resource('pricelist', PriceListController::class);

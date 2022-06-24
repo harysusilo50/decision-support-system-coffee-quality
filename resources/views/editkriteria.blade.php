@@ -62,6 +62,9 @@
                                         id="input-pilihan-{{ $loop->index+1 }}" value="{{ $item->sub_kriteria }}"
                                         required>
                                 </div>
+                                  <div class="col">
+                                    <input class="form-control" type="number" name="nilai[{{$loop->index+1}}]" id="input-nilai-{{$loop->index+1}}" value="{{ $item->value }}" required >
+                                </div> 
                                 <button class="btn btn-sm btn-danger remove-input-field">Remove</button>
                             </div>
                             @endforeach
@@ -93,6 +96,10 @@
                 <div class="col">
                     <input class="form-control" type="text" name="pilihan[${counter}]" id="input-pilihan-${counter}" value="" required >
                 </div>
+                <div class="col">
+                    <label for="input-nilai-${counter}">Value Sub Kriteria </label>
+                    <input class="form-control" type="number" name="nilai[${counter}]" id="input-nilai-${counter}" value="" required >
+                </div> 
                     <button class="btn btn-sm btn-danger remove-input-field">Remove</button>
                 </div>`
                 );

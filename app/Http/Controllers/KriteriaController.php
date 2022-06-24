@@ -37,16 +37,14 @@ class KriteriaController extends Controller
             'bobot' => $request->bobot
         ]);
 
-        $counter = 1;
-        foreach ($request->pilihan as $pilihan) {
+        $combine = array_combine($request->pilihan, $request->nilai);
+        foreach ($combine as $pilihans => $nilais) {
             SubKriteria::create([
-                'sub_kriteria' => $pilihan,
-                'value' => $counter,
+                'sub_kriteria' => $pilihans,
+                'value' => $nilais,
                 'kriteria_id' => $kriteria->id,
             ]);
-            $counter++;
         }
-
         return redirect()->route('kriteria');
     }
 
@@ -80,14 +78,13 @@ class KriteriaController extends Controller
         $kriteria->subKriteria()->delete();
 
 
-        $counter = 1;
-        foreach ($request->pilihan as $pilihan) {
+        $combine = array_combine($request->pilihan, $request->nilai);
+        foreach ($combine as $pilihans => $nilais) {
             SubKriteria::create([
-                'sub_kriteria' => $pilihan,
-                'value' => $counter,
+                'sub_kriteria' => $pilihans,
+                'value' => $nilais,
                 'kriteria_id' => $kriteria->id,
             ]);
-            $counter++;
         }
 
         return redirect()->route('kriteria');
